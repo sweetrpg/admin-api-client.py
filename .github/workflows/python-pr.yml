@@ -46,7 +46,7 @@ jobs:
               id: pip-cache
               run: echo "dir=$(pip cache dir)" >> $GITHUB_OUTPUT
             - name: cache-pip
-              uses: actions/cache@v5
+              uses: actions/cache@v6
               with:
                   path: ${{ steps.pip-cache.outputs.dir }}
                   key: pip|${{ runner.os }}|${{ steps.get_lang_version.outputs.lang_version }}|${{ hashFiles('setup.py') }}|${{ hashFiles('requirements/*.txt') }}
