@@ -12,6 +12,8 @@ on:
             - "requirements/*.txt"
             - .python-version
             - .tox-env
+            - ".github/workflows/**"
+            - ".github/dependabot.yml"
 
 jobs:
     tests:
