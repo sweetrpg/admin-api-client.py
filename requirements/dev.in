@@ -1,0 +1,4 @@
+-r pkg.in
+-r tests.in
+pip-tools~=7.0
+black~=26.3
