@@ -41,7 +41,7 @@ jobs:
                     echo "lang_version=$v" >> $GITHUB_OUTPUT
                     t=$(cat .tox-env)
                     echo "tox_env=$t" >> $GITHUB_OUTPUT
-            - uses: actions/setup-python@v6
+            - uses: actions/setup-python@v7
               with:
                   python-version: ${{ steps.get_lang_version.outputs.lang_version }}
             - name: update-pip
