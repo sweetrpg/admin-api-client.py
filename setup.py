@@ -5,6 +5,7 @@ setup(
     name="sweetrpg-admin-api-client",
     install_requires=[
         "requests~=2.32",
+        "opentelemetry-api",
     ],
     extras_require={},
 )
