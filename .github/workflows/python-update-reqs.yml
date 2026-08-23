@@ -1,4 +1,4 @@
-name: Update Requirements
+name: Update Lockfile
 
 on:
     workflow_dispatch:
@@ -10,29 +10,25 @@ on:
         branches:
             - develop
         paths:
-            - "requirements/*.in"
-            - setup.py
+            - "pyproject.toml"
 
 jobs:
-    update-reqs:
+    update-lock:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v6
-            - name: Get language version
-              id: get_lang_version
+            - name: install-uv
+              uses: astral-sh/setup-uv@v5
+            - name: update-lock
               run: |
-                    v=$(cat .python-version)
-                    echo "lang_version=$v" >> $GITHUB_OUTPUT
-            - uses: actions/setup-python@v6
-              with:
-                  python-version: ${{ steps.get_lang_version.outputs.lang_version }}
-            - name: update-reqs
-              run: |
-                  pip install -U wheel setuptools pip-tools
                   git config --global user.email "ci@sweetrpg.com"
                   git config --global user.name "SweetRPG Requirement Updater"
                   git checkout ${{ github.head_ref || github.ref_name }}
-                  scripts/update-requirements.sh
-                  git add requirements/*.txt
-                  git commit -m "Update requirements"
+                  uv lock --upgrade
+                  if git diff --quiet uv.lock; then
+                      echo "No dependency updates"
+                      exit 0
+                  fi
+                  git add uv.lock
+                  git commit -m "chore: update dependencies (uv lock --upgrade)"
                   git push origin

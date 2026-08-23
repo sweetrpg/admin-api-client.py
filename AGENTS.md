@@ -26,7 +26,13 @@ Git-flow (see `docs/git-flow.md` in `sweetrpg/platform`): `develop` is the integ
 
 ## Running Checks Locally
 
+This project uses [uv](https://docs.astral.sh/uv/) for dependency management and task running
+(`pyproject.toml` + committed `uv.lock`):
+
 ```bash
-pip install -r requirements/tests.txt
-tox
+uv sync --group test   # create .venv and install deps
+uv run pytest          # run tests
+uv lock --upgrade      # update dependencies
 ```
+
+`uv` is the required Python tool on this platform; do not use `pip`/`tox` directly.
