@@ -18,7 +18,7 @@ jobs:
         steps:
             - uses: actions/checkout@v6
             - name: install-uv
-              uses: astral-sh/setup-uv@v5
+              uses: astral-sh/setup-uv@v7
             - name: update-lock
               run: |
                   git config --global user.email "ci@sweetrpg.com"
