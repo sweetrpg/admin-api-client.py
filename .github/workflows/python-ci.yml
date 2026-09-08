@@ -49,7 +49,7 @@ jobs:
                   uv run coverage xml -o coverage-pages/coverage.xml
                   uv run coverage html -d coverage-pages/htmlcov
             - name: upload-coverage-artifact
-              uses: actions/upload-artifact@v4
+              uses: actions/upload-artifact@v7
               with:
                   name: coverage-report-${{ matrix.name }}
                   path: coverage-pages/
