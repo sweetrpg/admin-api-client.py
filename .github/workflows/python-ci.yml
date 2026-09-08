@@ -32,7 +32,7 @@ jobs:
                       os: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v6
+            - uses: actions/checkout@v7
             - name: install-uv
               uses: astral-sh/setup-uv@v5
             - name: sync-deps
@@ -75,7 +75,7 @@ jobs:
         permissions:
             contents: write
         steps:
-            - uses: actions/checkout@v6
+            - uses: actions/checkout@v7
               with:
                   fetch-depth: 0
             - name: Bump version and push tag
